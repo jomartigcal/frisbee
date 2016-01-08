@@ -3,6 +3,8 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'checkstyle'
+apply from: '../gradle/jacoco.gradle'
+apply plugin: 'com.github.kt3k.coveralls'
 
 preBuild.dependsOn('checkstyle')
 assemble.dependsOn('lint')
@@ -112,7 +114,7 @@ android {
         }
         debug {
             ext.enableCrashlytics = false
-            debuggable true
+            testCoverageEnabled = true
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
             signingConfig signingConfigs.debug

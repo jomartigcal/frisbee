@@ -10,13 +10,16 @@ android:
   - extra-android-m2repository
 
 before_script:
-- GRADLE_OPTS="-Xms40m -Xmx3g -XX:MaxPermSize=3g"
+  - GRADLE_OPTS="-Xms40m -Xmx3g -XX:MaxPermSize=3g"
 
 script: "./gradlew check"
 
 branches:
   except:
     - gh-pages
+
+after_success:
+  - ./gradlew jacocoTestReport coveralls
 
 notifications:
   webhooks:
