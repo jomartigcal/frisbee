@@ -9,13 +9,13 @@ import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import java.util.List;
-
 import org.assertj.core.api.Condition;
 import org.gdg.frisbee.android.Const;
 import org.gdg.frisbee.android.chapter.MainActivity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -38,15 +38,6 @@ public class IntentFilterTest {
         final List<ResolveInfo> activities = InstrumentationRegistry.getTargetContext().getPackageManager().queryIntentActivities(intent, 0);
 
         assertThat(activities).areNot(ofType(MainActivity.class));
-    }
-
-    @Test
-    public void gdgroupEventsLinkWithoutIdLaunchesMainActivity() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(Const.URL_GDGROUPS_ORG + "/" + Const.PATH_GDGROUPS_ORG_EVENT));
-        final List<ResolveInfo> activities = InstrumentationRegistry.getTargetContext().getPackageManager().queryIntentActivities(intent, 0);
-
-        assertThat(activities).areAtLeastOne(ofType(MainActivity.class));
     }
 
     @Test
